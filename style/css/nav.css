@@ -1,0 +1,26 @@
+.nav-container {
+  background-color: rgb(44, 99, 200);
+  width: 100%;
+  margin: auto;
+  height: 80px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container .nav-heading {
+  font-size: 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.nav-inner-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-container .nav-heading {
+  color: white;
+}

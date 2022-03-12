@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatting App</title>
+    <link href="/css/nav.css" rel="stylesheet" type="text/css" />
+    <link href="/css/chatting.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="nav-container">
+      <div class="nav-inner-container">
+        <div class="nav-heading">
+          <i>Hi,&nbsp;<%= user.name %></i>
+        </div>
+        <div>
+          <a style="color: white" href="/signout">Log Out</a>
+          <input id="personname" type="hidden" value="<%= user.name %>" />
+          <input id="personid" type="hidden" value="<%= user._id %>" />
+        </div>
+      </div>
+    </div>
+
+    <div class="chatting-box">
+      <div class="chatting-box-header">Let's Talk</div>
+
+      <div class="chatting-messages-container">
+        <% for(data of chatdata){ %> <% if((user._id).equals(data.senderId)){ %>
+
+        <div class="message-container">
+          <div class="message-sender">You</div>
+
+          <div class="message-content"><%= data.message %></div>
+        </div>
+
+        <br />
+
+        <% }else{ %>
+
+        <div class="message-container-a">
+          <div class="message-sender-a"><%= data.sender %></div>
+
+          <div class="message-content-a"><%= data.message %></div>
+        </div>
+
+        <br />
+
+        <% }} %>
+      </div>
+
+      <div class="typebar">
+        <div class="textbox">
+          <input
+            id="chat-message-input"
+            type="text"
+            placeholder="Enter Message..."
+            required
+          />
+        </div>
+        <div class="send">
+          <button onclick="sendMessage()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="32"
+              height="32"
+              viewBox="0 0 172 172"
+              style="fill: #000000"
+            >
+              <g
+                fill="none"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-weight="none"
+                font-size="none"
+                text-anchor="none"
+                style="mix-blend-mode: normal"
+              >
+                <path d="M0,172v-172h172v172z" fill="none"></path>
+                <g fill="#ffffff">
+                  <path
+                    d="M169.3125,86c-0.00021,1.07147 -0.63629,2.04064 -1.61922,2.46712l-161.25,69.875c-1.0641,0.46171 -2.30436,0.1886 -3.07611,-0.67738c-0.77174,-0.86597 -0.9008,-2.12937 -0.32009,-3.1335l31.68563,-54.9325c0.30511,-0.52855 0.78085,-0.93767 1.34913,-1.16019l31.79339,-12.43856l-31.79312,-12.43748c-0.56828,-0.22252 -1.04402,-0.63164 -1.34913,-1.16019l-31.68589,-54.93358c-0.58071,-1.00413 -0.45165,-2.26753 0.32009,-3.1335c0.77174,-0.86597 2.012,-1.13909 3.07611,-0.67738l161.25,69.875c0.98293,0.42649 1.61901,1.39566 1.61922,2.46712z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script>
+      const socket = io("http://localhost:5000");
+      socket.on("connection");
+
+      socket.on("message", (data) => {
+        window.location.href = window.location.href;
+      });
+
+      const sendMessage = () => {
+        var send_message = document.getElementById("chat-message-input").value;
+        var user = document.getElementById("personname").value;
+        var userid = document.getElementById("personid").value;
+        send_message += "-" + user + "-" + userid;
+        console.log(send_message);
+        socket.emit("message", send_message);
+      };
+    </script>
+  </body>
+</html>

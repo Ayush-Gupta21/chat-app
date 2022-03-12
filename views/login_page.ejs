@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign In</title>
+    <link href="/css/login_signup.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body style="background-color: aliceblue">
+    <%- include('nav',{signup:false}) %>
+    <div class="form-container">
+      <h1>Login</h1>
+      <form action="/login" method="post">
+        <input name="email" type="email" placeholder="Email" required /><br />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+        /><br />
+        <button>Login</button>
+      </form>
+    </div>
+  </body>
+</html>

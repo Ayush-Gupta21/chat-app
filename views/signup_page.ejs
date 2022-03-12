@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link href="/css/login_signup.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body style="background-color: aliceblue">
+    <%- include('nav',{signup:true}) %>
+    <div class="form-container">
+      <h1>Signup</h1>
+      <p style="color: red"><%= error %></p>
+      <form action="/createuser" method="post">
+        <input name="name" type="text" placeholder="Name" required /><br />
+        <input name="email" type="email" placeholder="Email" required /><br />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+        /><br />
+        <input
+          name="confirm_password"
+          type="password"
+          placeholder="Confirm Password"
+          required
+        /><br />
+        <button>Sign Up</button>
+      </form>
+    </div>
+  </body>
+</html>

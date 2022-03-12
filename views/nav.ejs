@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatting App</title>
+    <link href="/css/nav.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="nav-container">
+      <div class="nav-inner-container">
+        <div class="nav-heading">Chatting App</div>
+        <div>
+          <% if(signup){ %>
+          <a style="color: white" href="/signin">Login</a>&nbsp;&nbsp;&nbsp;
+          <a style="color: rgb(189, 189, 189)" href="/signup">Sign Up</a>
+          <% }else{ %>
+          <a style="color: rgb(189, 189, 189)" href="/signin">Login</a
+          >&nbsp;&nbsp;&nbsp;
+          <a style="color: white" href="/signup">Sign Up</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
